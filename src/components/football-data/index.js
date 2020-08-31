@@ -11,7 +11,8 @@ class FootballMatchesData extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedYear: null
+      selectedYear: null,
+      isClicked : false
     };
   }
 
@@ -19,7 +20,8 @@ class FootballMatchesData extends Component {
     // Code written in next line is to take care of adding active class to selected year for css purpose.
     this.props.getData(year)
     this.setState({
-      selectedYear: year
+      selectedYear: year,
+      isClicked: true
     })
   }
 
@@ -57,7 +59,11 @@ class FootballMatchesData extends Component {
               </ul>
              )
            })}
-          </section> : ''}
+          </section> : 
+          <section> 
+            {this.state.isClicked && <div data-testid="no-result">No Matches Found</div> }
+          </section>
+          }
           <div data-testid="no-result" className="slide-up-fade-in no-result"></div>
         </section>
       </div>
